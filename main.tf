@@ -136,7 +136,7 @@ module "ec2_instance" {
   vpc_security_group_ids = concat(
     [
       module.rsk_pd_sg.security_group_id,
-      module.exit_to_Inet_sg.security_group_id,
+      module.allow_outgoing_internet_sg.security_group_id,
     ],
     var.additional_security_group_ids,
   )
