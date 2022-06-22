@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.56.0"
+      version = "4.15.1"
     }
   }
 }
@@ -48,7 +48,7 @@ locals {
 
 module "rsk_pd_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.0.0"
+  version = "4.9.0"
 
   name        = "rsk-${lower(var.rsk_network)}-peer-discovery"
   description = "Allow world access to RSK ${lower(var.rsk_network)} Peer Discovery."
@@ -85,7 +85,7 @@ module "rsk_pd_sg" {
 
 module "allow_outgoing_internet_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.0.0"
+  version = "4.9.0"
 
   name        = "exit-to-Inet-sg"
   description = "Allow outgoing traffic to the Internet."
@@ -112,7 +112,7 @@ module "allow_outgoing_internet_sg" {
 
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "3.1.0"
+  version = "4.0.0"
 
   name = var.name
 
