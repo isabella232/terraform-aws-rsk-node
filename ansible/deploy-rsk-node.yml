@@ -1,5 +1,0 @@
----
-- name: Deploy RSK node
-  hosts: rsk-node
-  roles: 
-    - rsk-node
