@@ -10,5 +10,5 @@ This example shows the whole process of:
 $ git clone https://github.com/rsksmart/ansible-role-rsk-node.git
 $ terraform init
 $ terraform apply
-$ ansible-playbook -i inventory -u ubuntu ansible-role-rsk-node/deploy-rsk-node.yaml
+$ ansible-playbook -i inventory -u ubuntu ansible-role-rsk-node/deploy-rsk-node.yml
 ```

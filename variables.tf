@@ -26,14 +26,29 @@ variable "instance_type" {
   default     = "t3a.large"
 }
 
-variable "key_name" {
-  description = "Name of the keypair for SSH access (must exists on the AWS region)."
+variable "public_ssh_key" {
+  description = "SSH Public Key to access the RSK node. Used also to deploy the configuration."
   type        = string
-  default     = ""
+  validation {
+    condition     = length(var.public_ssh_key) > 0
+    error_message = "Please define a public ssh key"
+  }
 }
 
 variable "additional_security_group_ids" {
   description = "List of security group IDs to associate with."
   type        = list(string)
   default     = []
+}
+
+variable "allowed_ssh_ips" {
+  description = "List of IPs CIDR to whitelist for ssh access to the RSK server."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "allowed_ssh_ip6s" {
+  description = "List of IPv6 CIDR to whitelist for ssh access to the RSK server."
+  type        = list(string)
+  default     = ["::/0"]
 }
