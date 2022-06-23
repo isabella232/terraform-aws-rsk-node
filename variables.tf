@@ -31,3 +31,7 @@ variable "additional_security_group_ids" {
   type        = list(string)
   default     = []
 }
+
+variable "key_name" {
+  description = "SSH key pair name for RSK server"
+}

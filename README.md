@@ -26,6 +26,5 @@ The most important things that this module will create are: an EC2 instance (usi
 | rsk_network | The RSK blockchain network |
 
 
-## Usage examples
-* [Adding SSH access to the EC2 instance](./Examples/Adding_SSH_access_to_the_EC2_instance/README.md)
+## Usage example
 * [Provision, deploy, configure and spin up an RSKj node](./Examples/Provision_deploy_and_configure/README.md) 
