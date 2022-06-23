@@ -87,8 +87,8 @@ module "rsk_ssh_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.9.0"
 
-  name        = "rsk-${lower(var.rsk_network)}-ssh-access"
-  description = "Allow ssh access to ${lower(var.rsk_network)} Peer."
+  name        = "rsk-node-ssh-access"
+  description = "Allow ssh access to RSK Server."
   vpc_id      = data.aws_vpc.default.id
 
   ingress_cidr_blocks      = var.allowed_ssh_ips
