@@ -16,13 +16,15 @@ The most important things that this module will create are: an EC2 instance (usi
 |name|The name for your the EC2 instance that will be running the RSKj node.|`string`|`"rsk-node"`|no|
 | rsk_network | Could be one of `mainnet`, `testnet` or `regtest`. Refere to [RSK Dev portal](https://developers.rsk.co/rsk/node/configure/reference/#blockchainconfigname) for more details | `string` |`n/a` | yes |
 |vpc_id|The ID of the VPC in which the nodes will be deployed. Uses default VPC if not supplied.|`string`|`null`|no|
-|allowed_ssh_ips|List of IPs CIDR to whitelist for ssh access to the RSK server.|`list`|"[0.0.0.0/0]"|no|
-|allowed_ssh_ip6s|List of IPv6 CIDR to whitelist for ssh access to the RSK server.|`list`|"[::/0]"|no|
+|allowed_ssh_ips|List of IPs CIDR to whitelist for ssh access to the RSK server.|`list`|`[0.0.0.0/0]`|no|
+|allowed_ssh_ip6s|List of IPv6 CIDR to whitelist for ssh access to the RSK server.|`list`|`[::/0]`|no|
 
 ## Outputs
 | Name | Description |
 |------|-------------|
 | public_ip | The public IP address of the instance |
+| rsk_network | The RSK blockchain network |
+
 
 ## Usage examples
 * [Adding SSH access to the EC2 instance](./Examples/Adding_SSH_access_to_the_EC2_instance/README.md)
