@@ -34,5 +34,18 @@ variable "additional_security_group_ids" {
 
 variable "key_name" {
   description = "SSH key pair name for RSK server"
+  type        = string
   default     = null
+}
+
+variable "allowed_ssh_ips" {
+  description = "List of IPs CIDR to whitelist for ssh access to the RSK server."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "allowed_ssh_ip6s" {
+  description = "List of IPv6 CIDR to whitelist for ssh access to the RSK server."
+  type        = list(string)
+  default     = ["::/0"]
 }
