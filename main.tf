@@ -2,12 +2,10 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.15.1"
+      version = ">= 4.15.1"
     }
   }
 }
-
-data "aws_region" "current" {}
 
 data "aws_vpc" "default" {
   default = var.vpc_id == null ? true : false
