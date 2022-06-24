@@ -1,5 +1,5 @@
 # Setup a TestNet for your local development and learning
-In this example, you will create the infra for an RSKj TestNet node to work; Your current public IP will be whitelisted and you'll be able to access the EC2 instance.
+In this example, you will create the infra for an RSKj TestNet node to work; Your current public IP will be whitelisted and you'll be able to access the EC2 instance throuth SSH and to make JSON-RPC calls to the node.
 
 ## Create the Infrastructure using Terraform
 In `terraform.tfvars` fill the value for `ssh_public_key` with your SSH public key. For example: the content of `~/.ssh/id_ed25519` is a valid value for `public_key`. If you don't do this step, you will be asked for your key when you try to apply.
@@ -34,3 +34,10 @@ Follow the [documentation](https://developers.rsk.co/rsk/node/install/ubuntu/) t
 ### Manual installation
 Clone the [repo](https://github.com/rsksmart/rskj) and perform a manual install.
 
+## Testing the node
+For example, if you want to know the height of the blockchain you could run
+
+```bash
+$ curl  -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id} http://$RSK_NODE_IP:4444
+```
+> You could check other methods in the official [documentation](https://developers.rsk.co/rsk/node/architecture/json-rpc/)
