@@ -19,7 +19,7 @@ data "aws_vpc" "default" {
 # Upload developer provided public key to AWS
 resource "aws_key_pair" "rsk_developer" {
   key_name   = "rsk-developer-key"
-  public_key = "ssh-rsa AAAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  public_key = var.public_ssh_key
 }
 
 # Grant developer's IP access to ports 22 (ssh) and 4444 (RPC)

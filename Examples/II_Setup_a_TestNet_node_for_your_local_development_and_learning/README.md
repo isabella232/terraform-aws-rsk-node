@@ -2,9 +2,7 @@
 In this example, you will create the infra for an RSKj TestNet node to work; Your current public IP will be whitelisted and you'll be able to access the EC2 instance.
 
 ## Create the Infrastructure using Terraform
-In `main.tf` replace the value for `public_key` with your SSH public key. 
-
-> For example: the content of `~/.ssh/id_ed25519` is a valid value for `public_key`
+In `terraform.tfvars` fill the value for `ssh_public_key` with your SSH public key. For example: the content of `~/.ssh/id_ed25519` is a valid value for `public_key`. If you don't do this step, you will be asked for your key when you try to apply.
 
 ```bash
 $ terraform init
