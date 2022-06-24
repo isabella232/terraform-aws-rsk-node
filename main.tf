@@ -116,8 +116,8 @@ module "ec2_instance" {
 
   name = var.name
 
-  ami = data.aws_ami.ubuntu.id
-
+  ami           = data.aws_ami.ubuntu.id
+  key_name      = var.key_name
   instance_type = var.instance_type
 
   ebs_optimized = true
