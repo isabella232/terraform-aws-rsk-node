@@ -1,4 +1,4 @@
-# Setup a TestNet for your local development and learning
+# Setup a TestNet Node for your local development and learning
 In this example, you will create the infra for an RSKj TestNet node to work; Your current public IP will be whitelisted and you'll be able to access the EC2 instance throuth SSH and to make JSON-RPC calls to the node.
 
 ## Create the Infrastructure using Terraform

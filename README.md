@@ -5,7 +5,7 @@ Terraform [module](https://www.terraform.io/docs/language/modules/index.html) wh
 
 The most important things that this module will create are: an EC2 instance (using a default type `t3a.large`) and two Security Groups attached to the instance, one to allow world access to RSK Peer Discovery and other to let the instance connect to the world (this is needed to install the RSKj implementation).
 
-> Using this module will only give you the infraestructure needed to deploy the RSKj node. Then you could do the deploy using this Ansible [role](https://github.com/rsksmart/ansible-role-rsk-node). Here you have an [example](./Examples/Provision_deploy_and_configure/README.md) of the complete procedure.
+> Using this module will only give you the infraestructure needed to deploy the RSKj node. Then you could deploy using this Ansible [role](https://github.com/rsksmart/ansible-role-rsk-node). See the  [examples](./Examples/) section for other methods.
 
 ## Inputs
 | Name | Description | Type | Default | Required |
