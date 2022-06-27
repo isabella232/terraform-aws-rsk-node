@@ -8,7 +8,7 @@ module "rsk-node" {
 
 # Retrieve user's IP to whitelist
 data "http" "myip" {
-  url = "http://ipv4.icanhazip.com"
+  url = "https://checkip.amazonaws.com"
 }
 
 # Use default VPC
