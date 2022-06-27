@@ -1,6 +1,6 @@
 module "rsk-node" {
   source                        = "../../../terraform-aws-rsk-node"
-  rsk_network                   = "testnet"
+  rsk_network                   = var.rsk_network
   key_name                      = aws_key_pair.rsk_developer.key_name
   vpc_id                        = data.aws_vpc.default.id
   additional_security_group_ids = [module.rsk_developer_sg.security_group_id]
@@ -12,9 +12,7 @@ data "http" "myip" {
 }
 
 # Use default VPC
-data "aws_vpc" "default" {
-  default = true
-}
+data "aws_vpc" "default" {}
 
 # Upload developer provided public key to AWS
 resource "aws_key_pair" "rsk_developer" {

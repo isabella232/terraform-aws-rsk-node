@@ -37,24 +37,3 @@ variable "key_name" {
   type        = string
   default     = null
 }
-
-variable "public_ssh_key" {
-  description = "SSH Public Key to access the RSK node. Used also to deploy the configuration."
-  type        = string
-  validation {
-    condition     = length(var.public_ssh_key) > 0
-    error_message = "Please define a public ssh key"
-  }
-}
-
-variable "allowed_ssh_ips" {
-  description = "List of IPs CIDR to whitelist for ssh access to the RSK server."
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
-}
-
-variable "allowed_ssh_ip6s" {
-  description = "List of IPv6 CIDR to whitelist for ssh access to the RSK server."
-  type        = list(string)
-  default     = ["::/0"]
-}

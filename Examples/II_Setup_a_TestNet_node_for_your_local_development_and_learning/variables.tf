@@ -6,3 +6,13 @@ variable "public_ssh_key" {
     error_message = "Please define a public ssh key"
   }
 }
+
+variable "rsk_network" {
+  description = "RSK network name. One of \"mainnet\", \"testnet\" or \"regtest\"."
+  type        = string
+
+  validation {
+    condition     = anytrue([for network in ["mainnet", "testnet", "regtest"] : lower(var.rsk_network) == network])
+    error_message = "Only \"mainnet\", \"testnet\" or \"regtest\" allowed."
+  }
+}
