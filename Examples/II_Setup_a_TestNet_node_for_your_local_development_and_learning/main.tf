@@ -1,9 +1,26 @@
-module "rsk-node" {
-  source                        = "../../../terraform-aws-rsk-node"
+module "rsk_node" {
+  source                        = "../.."
   rsk_network                   = var.rsk_network
   key_name                      = aws_key_pair.rsk_developer.key_name
-  vpc_id                        = data.aws_vpc.default.id
+  subnet_id                     = data.aws_subnet.default.id
+  ami_id                        = data.aws_ami.ubuntu.id
   additional_security_group_ids = [module.rsk_developer_sg.security_group_id]
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20220616"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
 }
 
 # Retrieve user's IP to whitelist
@@ -11,8 +28,19 @@ data "http" "myip" {
   url = "https://checkip.amazonaws.com"
 }
 
-# Use default VPC
+# Use default VPC and subnet
 data "aws_vpc" "default" {}
+
+data "aws_subnets" "default_vpc" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+}
+
+data "aws_subnet" "default" {
+  id = data.aws_subnets.default_vpc.ids[0]
+}
 
 # Upload developer provided public key to AWS
 resource "aws_key_pair" "rsk_developer" {
@@ -64,8 +92,8 @@ resource "local_file" "ansible_inventory" {
   content = templatefile(
     "inventory.tpl",
     {
-      public_ip   = module.rsk-node.public_ip
-      rsk_network = module.rsk-node.rsk_network
+      public_ip   = module.rsk_node.public_ip
+      rsk_network = module.rsk_node.rsk_network
     }
   )
   filename = "./inventory"
