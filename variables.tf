@@ -1,7 +1,6 @@
-variable "vpc_id" {
-  description = "The ID of the VPC in which the nodes will be deployed. Uses default VPC if not supplied."
+variable "subnet_id" {
+  description = "The ID of the VPC Subnet in which the nodes will be deployed."
   type        = string
-  default     = null
 }
 
 variable "name" {

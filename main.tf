@@ -7,16 +7,8 @@ terraform {
   }
 }
 
-data "aws_vpc" "default" {
-  default = var.vpc_id == null ? true : false
-  id      = var.vpc_id
-}
-
-data "aws_subnets" "default" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
-  }
+data "aws_subnet" "selected" {
+  id = var.subnet_id
 }
 
 data "aws_ami" "ubuntu" {
@@ -50,7 +42,7 @@ module "rsk_pd_sg" {
 
   name        = "rsk-${lower(var.rsk_network)}-peer-discovery"
   description = "Allow world access to RSK ${lower(var.rsk_network)} Peer Discovery."
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = data.aws_subnet.selected.vpc_id
 
   ingress_cidr_blocks      = ["0.0.0.0/0"]
   ingress_ipv6_cidr_blocks = ["::/0"]
@@ -87,7 +79,7 @@ module "allow_outgoing_internet_sg" {
 
   name        = "exit-to-Inet-sg"
   description = "Allow outgoing traffic to the Internet."
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = data.aws_subnet.selected.vpc_id
 
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
@@ -127,7 +119,7 @@ module "ec2_instance" {
     }
   ]
 
-  subnet_id = data.aws_subnets.default.ids[0]
+  subnet_id = var.subnet_id
 
   vpc_security_group_ids = concat(
     [

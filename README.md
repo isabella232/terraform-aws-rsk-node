@@ -15,7 +15,7 @@ The most important things that this module will create are: an EC2 instance (usi
 |key_name|EC2 Key Pair Name to access the RSK node. Used also to deploy the configuration.|`string`|`null`|yes|
 |name|The name for your the EC2 instance that will be running the RSKj node.|`string`|`"rsk-node"`|no|
 |rsk_network|Could be one of `mainnet`, `testnet` or `regtest`. Refere to [RSK Dev portal](https://developers.rsk.co/rsk/node/configure/reference/#blockchainconfigname) for more details.|`string`|`n/a`|yes|
-|vpc_id|The ID of the VPC in which the nodes will be deployed. Uses default VPC if not supplied.|`string`|`null`|no|
+|subnet_id|The ID of the VPC Subnet in which the nodes will be deployed.|`string`|`n/a`|yes|
 
 ## Outputs
 | Name | Description |
