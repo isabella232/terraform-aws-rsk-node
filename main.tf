@@ -11,22 +11,6 @@ data "aws_subnet" "selected" {
   id = var.subnet_id
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20220616"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
 locals {
   rsk_network = lower(var.rsk_network)
 
@@ -108,7 +92,7 @@ module "ec2_instance" {
 
   name = var.name
 
-  ami           = data.aws_ami.ubuntu.id
+  ami           = var.ami_id
   key_name      = var.key_name
   instance_type = var.instance_type
 

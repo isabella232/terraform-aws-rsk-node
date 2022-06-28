@@ -36,3 +36,8 @@ variable "key_name" {
   type        = string
   default     = null
 }
+
+variable "ami_id" {
+  description = "AMI ID to be launched into the EC2 instances."
+  type        = string
+}
