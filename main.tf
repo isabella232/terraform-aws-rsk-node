@@ -28,20 +28,22 @@ data "aws_ami" "ubuntu" {
 }
 
 locals {
+  rsk_network = lower(var.rsk_network)
+
   rsk_pd_ports_map = {
     mainnet = 5050
     testnet = 50505
     regtest = 50501
   }
-  rsk_pd_port = local.rsk_pd_ports_map[lower(var.rsk_network)]
+  rsk_pd_port = local.rsk_pd_ports_map[local.rsk_network]
 }
 
 module "rsk_pd_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.9.0"
 
-  name        = "rsk-${lower(var.rsk_network)}-peer-discovery"
-  description = "Allow world access to RSK ${lower(var.rsk_network)} Peer Discovery."
+  name        = "rsk-${local.rsk_network}-peer-discovery"
+  description = "Allow world access to RSK ${local.rsk_network} Peer Discovery."
   vpc_id      = data.aws_subnet.selected.vpc_id
 
   ingress_cidr_blocks      = ["0.0.0.0/0"]
