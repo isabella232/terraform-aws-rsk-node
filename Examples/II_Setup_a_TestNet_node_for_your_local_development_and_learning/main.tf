@@ -1,6 +1,6 @@
 module "rsk_node" {
   source                        = "../.."
-  rsk_network                   = var.rsk_network
+  rsk_network                   = "testnet"
   key_name                      = aws_key_pair.rsk_developer.key_name
   subnet_id                     = data.aws_subnet.default.id
   ami_id                        = data.aws_ami.ubuntu.id
