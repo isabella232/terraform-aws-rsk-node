@@ -33,7 +33,9 @@ data "http" "myip" {
 }
 
 # Use default VPC and subnet
-data "aws_vpc" "default" {}
+data "aws_vpc" "default" {
+  default = true
+}
 
 data "aws_subnets" "default_vpc" {
   filter {
