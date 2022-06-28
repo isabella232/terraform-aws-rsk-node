@@ -29,7 +29,7 @@ data "aws_ami" "ubuntu" {
 
 # Retrieve user's IP to whitelist
 data "http" "myip" {
-  url = "https://checkip.amazonaws.com"
+  url = "https://ipv4.icanhazip.com/"
 }
 
 # Use default VPC and subnet
