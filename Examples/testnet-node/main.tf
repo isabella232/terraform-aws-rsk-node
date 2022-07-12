@@ -95,6 +95,7 @@ module "rsk_developer_sg" {
 
 # This will create an Ansible inventory file used to deploy RSKj (see README.md)
 resource "local_file" "ansible_inventory" {
+  file_permission = "0644"
   content = templatefile(
     "inventory.tpl",
     {
